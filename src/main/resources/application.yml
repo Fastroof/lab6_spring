@@ -1,0 +1,26 @@
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+  thymeleaf:
+    view-names: thymeleaf/*
+  datasource:
+    url: jdbc:postgresql://ec2-54-228-218-84.eu-west-1.compute.amazonaws.com:5432/d9t0tmmqh66l05
+    username: saiqppkiopvnew
+    password: a3482d4583c95467e2d3418bef785743adf38397cfc406b5846490d66e102957
+    driver-class-name: org.postgresql.Driver
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 266838271022-rvslt803ato8fs5gihu8mr10l5saj740.apps.googleusercontent.com
+            client-secret: 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
+            scope:
+              - email
+              - profile
+
+server:
+  error:
+    path: /error
