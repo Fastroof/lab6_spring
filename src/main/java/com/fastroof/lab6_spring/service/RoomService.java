@@ -10,6 +10,6 @@ import java.security.Principal;
 public interface RoomService {
     boolean addRoom(RoomCreationRequest roomCreationRequest, Principal principal);
     Room getRoom(Long id);
-    boolean updateRoom(Long id, Room updatedRoom);
+    Room updateRoom(Long id, Room updatedRoom);
     boolean deleteRoom(Room room);
 }

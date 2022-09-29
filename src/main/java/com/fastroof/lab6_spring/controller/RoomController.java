@@ -46,12 +46,12 @@ public class RoomController {
 
     @PostMapping("/room/edit")
     @ResponseBody
-    public Boolean submitEditedRoom(@ModelAttribute Room room, @RequestParam Long id, Principal principal) {
+    public Room submitEditedRoom(@ModelAttribute Room room, @RequestParam Long id, Principal principal) {
         Room oldRoom = roomService.getRoom(id);
         if (oldRoom == null) {
-            return false;
+            return null;
         } else if (!principal.getName().equals(oldRoom.getUser().getEmail())) {
-            return false;
+            return null;
         }
         return roomService.updateRoom(id, room);
     }

@@ -2,21 +2,33 @@ package com.fastroof.lab6_spring.entity;
 
 import lombok.*;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
+import javax.persistence.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Entity
+@Table(name = "rooms")
 public class Room {
+    @Id
+    @Column(name = "id", nullable = false, unique = true, updatable = false)
+    @GeneratedValue(generator = "increment")
     private Long id;
-    @NotNull
-    @Valid
+
+    @OneToOne(mappedBy = "room", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
     private RoomConfiguration configuration;
-    @NotNull
-    @Valid
+
+    @OneToOne(mappedBy = "room", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
     private RoomDescription description;
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @OneToOne(mappedBy = "room")
+    private Order order;
 }

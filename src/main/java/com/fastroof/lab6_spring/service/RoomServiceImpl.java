@@ -66,14 +66,20 @@ public class RoomServiceImpl implements RoomService {
 
     @Transactional
     @Override
-    public boolean updateRoom(Long id, Room updatedRoom) {
+    public Room updateRoom(Long id, Room updatedRoom) {
         updatedRoom.setId(id);
-        return roomRepository.update(updatedRoom);
+        return roomRepository.save(updatedRoom);
     }
 
     @Transactional
     @Override
     public boolean deleteRoom(Room room) {
-        return roomRepository.delete(room);
+        try {
+            roomRepository.delete(room);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

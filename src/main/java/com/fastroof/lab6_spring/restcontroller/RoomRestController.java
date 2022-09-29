@@ -52,7 +52,7 @@ public class RoomRestController {
     }
 
     @PutMapping("/rooms/{id}")
-    boolean updateRoom(@Valid Room updatedRoom, @PathVariable Long id, Principal principal) {
+    Room updateRoom(@Valid Room updatedRoom, @PathVariable Long id, Principal principal) {
         Room oldRoom = roomService.getRoom(id);
         if (oldRoom == null) {
             throw new RoomNotFoundException(id);
@@ -63,15 +63,14 @@ public class RoomRestController {
     }
 
     @DeleteMapping("/rooms/{id}")
-    Room deleteRoom(@PathVariable Long id, Principal principal) {
+    Boolean deleteRoom(@PathVariable Long id, Principal principal) {
         Room room = roomService.getRoom(id);
         if (room == null) {
             throw new RoomNotFoundException(id);
         } else if (!principal.getName().equals(room.getUser().getEmail())) {
             throw new UserNotOwnerException(id);
         }
-        roomService.deleteRoom(room);
-        return room;
+        return roomService.deleteRoom(room);
     }
 
 }

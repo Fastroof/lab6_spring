@@ -2,37 +2,32 @@ package com.fastroof.lab6_spring.entity;
 
 import lombok.*;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import java.util.Objects;
+import javax.persistence.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Entity
+@Table(name = "room_configurations")
 public class RoomConfiguration {
+    @Id
+    @Column(name = "room_id")
+    @GeneratedValue(generator = "increment")
     private Long id;
-    @NotNull
-    @Min(1)
+
+    @Column(name = "area", nullable = false)
     private Double area;
-    @NotNull
-    @Min(1)
+
+    @Column(name = "bedroom_count", nullable = false)
     private Integer bedroomCount;
-    @NotNull
-    @Min(1)
+
+    @Column(name = "price", nullable = false)
     private Integer price;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        RoomConfiguration that = (RoomConfiguration) o;
-        return Objects.equals(area, that.area) && Objects.equals(bedroomCount, that.bedroomCount) && Objects.equals(price, that.price);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(area, bedroomCount, price);
-    }
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "room_id")
+    private Room room;
 }

@@ -29,8 +29,8 @@ public class SearchServiceImpl implements SearchService {
         for (RoomConfiguration roomConfiguration :
                 roomConfigurationRepository.findAllByAreaAndBedroomCountAndPrice(area, bedroomCount, price)
         ){
-            Optional<Room> room = roomRepository.findByRoomConfiguration(roomConfiguration);
-            rooms.add(room.orElse(null));
+            Optional<Room> room = roomRepository.findByConfiguration(roomConfiguration);
+            room.ifPresent(rooms::add);
         }
         return rooms;
     }

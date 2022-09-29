@@ -20,7 +20,7 @@ public class OrderRestController {
     }
 
     @GetMapping("/orders")
-    List<Order> allOrders() {
+    Iterable<Order> allOrders() {
         return indexService.getAllOrders();
     }
 

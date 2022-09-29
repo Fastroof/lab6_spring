@@ -7,8 +7,6 @@ import com.fastroof.lab6_spring.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class IndexServiceImpl implements IndexService {
 
@@ -21,11 +19,11 @@ public class IndexServiceImpl implements IndexService {
         this.orderRepository = orderRepository;
     }
 
-    public List<Room> getAllRooms() {
-        return roomRepository.getRooms();
+    public Iterable<Room> getAllRooms() {
+        return roomRepository.findAll();
     }
 
-    public List<Order> getAllOrders() {
-        return orderRepository.getOrders();
+    public Iterable<Order> getAllOrders() {
+        return orderRepository.findAll();
     }
 }
