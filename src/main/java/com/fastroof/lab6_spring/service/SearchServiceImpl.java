@@ -5,6 +5,7 @@ import com.fastroof.lab6_spring.entity.RoomConfiguration;
 import com.fastroof.lab6_spring.repository.RoomConfigurationRepository;
 import com.fastroof.lab6_spring.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -36,14 +37,15 @@ public class SearchServiceImpl implements SearchService {
     }
 
     @Override
-    public List<Room> findPaginatedByAreaAndBedroomCountAndPrice(Double area, Integer bedroomCount, Integer price, Integer page, Integer size) {
-        List<Room> rooms = findAllByAreaAndBedroomCountAndPrice(area, bedroomCount, price);
-        int startIndex = page * size;
-        int endIndex = page * size + size;
-        if (startIndex > rooms.size() || endIndex > rooms.size()) {
-            startIndex = Math.min(startIndex, rooms.size());
-            endIndex = rooms.size();
+    public List<Room> findAllByAreaAndBedroomCountAndPriceWithPagination(Double area, Integer bedroomCount, Integer price, Integer page, Integer size) {
+        PageRequest pageRequest = PageRequest.of(page,size);
+        List<Room> rooms = new ArrayList<>();
+        for (RoomConfiguration roomConfiguration :
+                roomConfigurationRepository.findAllByAreaAndBedroomCountAndPriceWithPagination(pageRequest, area, bedroomCount, price)
+        ){
+            Optional<Room> room = roomRepository.findByConfiguration(roomConfiguration);
+            room.ifPresent(rooms::add);
         }
-        return rooms.subList(startIndex, endIndex);
+        return rooms;
     }
 }

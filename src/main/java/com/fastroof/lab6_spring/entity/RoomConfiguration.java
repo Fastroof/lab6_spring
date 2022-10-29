@@ -1,5 +1,6 @@
 package com.fastroof.lab6_spring.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -14,7 +15,6 @@ import javax.persistence.*;
 public class RoomConfiguration {
     @Id
     @Column(name = "room_id")
-    @GeneratedValue(generator = "increment")
     private Long id;
 
     @Column(name = "area", nullable = false)
@@ -26,6 +26,7 @@ public class RoomConfiguration {
     @Column(name = "price", nullable = false)
     private Integer price;
 
+    @JsonIgnore
     @OneToOne
     @MapsId
     @JoinColumn(name = "room_id")

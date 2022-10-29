@@ -15,8 +15,8 @@ public class OrderRestController {
     private final IndexService indexService;
 
     @Autowired
-    public OrderRestController(IndexService indexServiceImpl) {
-        this.indexService = indexServiceImpl;
+    public OrderRestController(IndexService indexService) {
+        this.indexService = indexService;
     }
 
     @GetMapping("/orders")

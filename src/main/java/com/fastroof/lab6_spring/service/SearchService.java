@@ -8,5 +8,5 @@ import java.util.List;
 @Service
 public interface SearchService {
     List<Room> findAllByAreaAndBedroomCountAndPrice(Double area, Integer bedroomCount, Integer price);
-    List<Room> findPaginatedByAreaAndBedroomCountAndPrice(Double area, Integer bedroomCount, Integer price, Integer page, Integer size);
+    List<Room> findAllByAreaAndBedroomCountAndPriceWithPagination(Double area, Integer bedroomCount, Integer price, Integer page, Integer size);
 }

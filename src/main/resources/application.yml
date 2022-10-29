@@ -6,9 +6,9 @@ spring:
   thymeleaf:
     view-names: thymeleaf/*
   datasource:
-    url: jdbc:postgresql://ec2-54-228-218-84.eu-west-1.compute.amazonaws.com:5432/d9t0tmmqh66l05
-    username: saiqppkiopvnew
-    password: a3482d4583c95467e2d3418bef785743adf38397cfc406b5846490d66e102957
+    url: jdbc:postgresql://ec2-34-251-115-141.eu-west-1.compute.amazonaws.com:5432/d7ad7vnr5q80ub
+    username: dbuwrqojiynhbi
+    password: 2736c4e71d761f67e18baf0e5cdfcb24581253667886b1bad9918f1e3442414b
     driver-class-name: org.postgresql.Driver
   security:
     oauth2:

@@ -22,9 +22,9 @@ public class RoomRestController {
     private final SearchService searchService;
 
     @Autowired
-    public RoomRestController(RoomService roomServiceImpl, SearchService searchServiceImpl) {
-        this.roomService = roomServiceImpl;
-        this.searchService = searchServiceImpl;
+    public RoomRestController(RoomService roomService, SearchService searchService) {
+        this.roomService = roomService;
+        this.searchService = searchService;
     }
 
     @GetMapping("/rooms")
@@ -34,7 +34,7 @@ public class RoomRestController {
                         @Valid @Min(0) @RequestParam(required = false, defaultValue = "0")  Integer page,
                         @Valid @Min(1) @Max(5) @RequestParam(required = false, defaultValue = "3")  Integer size
     ) {
-        return searchService.findPaginatedByAreaAndBedroomCountAndPrice(area, bedroomCount, price, page, size);
+        return searchService.findAllByAreaAndBedroomCountAndPriceWithPagination(area, bedroomCount, price, page, size);
     }
 
     @PostMapping("/rooms")
