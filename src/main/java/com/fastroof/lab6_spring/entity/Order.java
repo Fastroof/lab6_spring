@@ -12,13 +12,16 @@ import java.util.Date;
 @ToString
 @Entity
 @Table(name = "orders")
+@org.hibernate.annotations.NamedQuery(name = "Order.getAll", query = "FROM Order")
 public class Order {
     @Id
-    @Column(name = "id", nullable = false, unique = true, updatable = false)
-    @GeneratedValue(generator = "increment")
+    @SequenceGenerator(name = "order_id_seq_gen", sequenceName = "order_id_seq",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_id_seq_gen")
+    @Column(name = "id", nullable = false, unique = true)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private User user;
 

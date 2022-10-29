@@ -991,7 +991,7 @@
           POST
         </span>
         <span class="endpoint">
-          /api/rooms
+          /api/room
         </span>
       </div>
 
@@ -1132,7 +1132,7 @@
   <div class="doc-section-examples-content">
       <div data-controller="doc-example" data-doc-examples-target="container" class="doc-example dark">
     <div class="doc-example__title copy">
-      <span class="doc-example__title-content">POST /api/rooms</span>
+      <span class="doc-example__title-content">POST /api/room</span>
         <button class="copy-button tooltipped-se" aria-label="Copy" data-doc-example-target="copyButton">
           <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg" data-action="click-&gt;doc-example#copy" class="copy-icon">
 <path d="M12.8755 1.55203H6.31129C5.90063 1.55203 5.56772 1.87074 5.56772 2.26388V4.28482H4.18679V2.26388C4.18679 1.1406 5.13796 0.230005 6.31129 0.230005H12.8755C14.0489 0.230005 15 1.1406 15 2.26388V9.14532C15 10.2686 14.0489 11.1792 12.8755 11.1792H11.1062V9.85717H12.8755C13.2862 9.85717 13.6191 9.53846 13.6191 9.14532V2.26388C13.6191 1.87073 13.2862 1.55203 12.8755 1.55203Z"></path>
@@ -1144,7 +1144,7 @@
     </div>
     <div class="doc-example__content" data-doc-examples-target="example" data-doc-example-target="content" data-title="">
       <pre><code class="doc-example__code language-curl hljs" data-syntax-highlight-target="entry"><span class="hljs-keyword">curl</span> \
- <span class="hljs-literal">-X <span class="hljs-symbol">POST</span></span> http://localhost:<span class="hljs-number">8080</span>/api/rooms?configuration.area=<span class="hljs-number">42.0</span>&amp;configuration.bedroomCount=<span class="hljs-number">42</span>&amp;configuration.price=<span class="hljs-number">42</span>&amp;description.description=string&amp;description.address=string</code></pre>
+ <span class="hljs-literal">-X <span class="hljs-symbol">POST</span></span> http://localhost:<span class="hljs-number">8080</span>/api/room?configuration.area=<span class="hljs-number">42.0</span>&amp;configuration.bedroomCount=<span class="hljs-number">42</span>&amp;configuration.price=<span class="hljs-number">42</span>&amp;description.description=string&amp;description.address=string</code></pre>
     </div>
 </div>
 
@@ -1173,7 +1173,7 @@
           GET
         </span>
         <span class="endpoint">
-          /api/rooms/{id}
+          /api/room/{id}
         </span>
       </div>
 
@@ -1419,7 +1419,7 @@
   <div class="doc-section-examples-content">
       <div data-controller="doc-example" data-doc-examples-target="container" class="doc-example dark">
     <div class="doc-example__title copy">
-      <span class="doc-example__title-content">GET /api/rooms/{id}</span>
+      <span class="doc-example__title-content">GET /api/room/{id}</span>
         <button class="copy-button tooltipped-se" aria-label="Copy" data-doc-example-target="copyButton">
           <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg" data-action="click-&gt;doc-example#copy" class="copy-icon">
 <path d="M12.8755 1.55203H6.31129C5.90063 1.55203 5.56772 1.87074 5.56772 2.26388V4.28482H4.18679V2.26388C4.18679 1.1406 5.13796 0.230005 6.31129 0.230005H12.8755C14.0489 0.230005 15 1.1406 15 2.26388V9.14532C15 10.2686 14.0489 11.1792 12.8755 11.1792H11.1062V9.85717H12.8755C13.2862 9.85717 13.6191 9.53846 13.6191 9.14532V2.26388C13.6191 1.87073 13.2862 1.55203 12.8755 1.55203Z"></path>
@@ -1431,7 +1431,7 @@
     </div>
     <div class="doc-example__content" data-doc-examples-target="example" data-doc-example-target="content" data-title="">
       <pre><code class="doc-example__code language-curl hljs" data-syntax-highlight-target="entry"><span class="hljs-keyword">curl</span> \
- <span class="hljs-literal">-X <span class="hljs-symbol">GET</span></span> http://localhost:<span class="hljs-number">8080</span>/api/rooms/{id}</code></pre>
+ <span class="hljs-literal">-X <span class="hljs-symbol">GET</span></span> http://localhost:<span class="hljs-number">8080</span>/api/room/{id}</code></pre>
     </div>
 </div>
 
@@ -1478,7 +1478,7 @@
           PUT
         </span>
         <span class="endpoint">
-          /api/rooms/{id}
+          /api/room/{id}
         </span>
       </div>
 
@@ -1655,7 +1655,7 @@
   <div class="doc-section-examples-content">
       <div data-controller="doc-example" data-doc-examples-target="container" class="doc-example dark">
     <div class="doc-example__title copy">
-      <span class="doc-example__title-content">PUT /api/rooms/{id}</span>
+      <span class="doc-example__title-content">PUT /api/room/{id}</span>
         <button class="copy-button tooltipped-se" aria-label="Copy" data-doc-example-target="copyButton">
           <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg" data-action="click-&gt;doc-example#copy" class="copy-icon">
 <path d="M12.8755 1.55203H6.31129C5.90063 1.55203 5.56772 1.87074 5.56772 2.26388V4.28482H4.18679V2.26388C4.18679 1.1406 5.13796 0.230005 6.31129 0.230005H12.8755C14.0489 0.230005 15 1.1406 15 2.26388V9.14532C15 10.2686 14.0489 11.1792 12.8755 11.1792H11.1062V9.85717H12.8755C13.2862 9.85717 13.6191 9.53846 13.6191 9.14532V2.26388C13.6191 1.87073 13.2862 1.55203 12.8755 1.55203Z"></path>
@@ -1667,7 +1667,7 @@
     </div>
     <div class="doc-example__content" data-doc-examples-target="example" data-doc-example-target="content" data-title="">
       <pre><code class="doc-example__code language-curl hljs" data-syntax-highlight-target="entry"><span class="hljs-keyword">curl</span> \
- <span class="hljs-literal">-X <span class="hljs-symbol">PUT</span></span> http://localhost:<span class="hljs-number">8080</span>/api/rooms/{id}?configuration.area=<span class="hljs-number">42.0</span>&amp;configuration.bedroomCount=<span class="hljs-number">42</span>&amp;configuration.price=<span class="hljs-number">42</span>&amp;description.description=string&amp;description.address=string</code></pre>
+ <span class="hljs-literal">-X <span class="hljs-symbol">PUT</span></span> http://localhost:<span class="hljs-number">8080</span>/api/room/{id}?configuration.area=<span class="hljs-number">42.0</span>&amp;configuration.bedroomCount=<span class="hljs-number">42</span>&amp;configuration.price=<span class="hljs-number">42</span>&amp;description.description=string&amp;description.address=string</code></pre>
     </div>
 </div>
 
@@ -1696,7 +1696,7 @@
           DELETE
         </span>
         <span class="endpoint">
-          /api/rooms/{id}
+          /api/room/{id}
         </span>
       </div>
 
@@ -1958,7 +1958,7 @@
   <div class="doc-section-examples-content">
       <div data-controller="doc-example" data-doc-examples-target="container" class="doc-example dark">
     <div class="doc-example__title copy">
-      <span class="doc-example__title-content">DELETE /api/rooms/{id}</span>
+      <span class="doc-example__title-content">DELETE /api/room/{id}</span>
         <button class="copy-button tooltipped-se" aria-label="Copy" data-doc-example-target="copyButton">
           <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg" data-action="click-&gt;doc-example#copy" class="copy-icon">
 <path d="M12.8755 1.55203H6.31129C5.90063 1.55203 5.56772 1.87074 5.56772 2.26388V4.28482H4.18679V2.26388C4.18679 1.1406 5.13796 0.230005 6.31129 0.230005H12.8755C14.0489 0.230005 15 1.1406 15 2.26388V9.14532C15 10.2686 14.0489 11.1792 12.8755 11.1792H11.1062V9.85717H12.8755C13.2862 9.85717 13.6191 9.53846 13.6191 9.14532V2.26388C13.6191 1.87073 13.2862 1.55203 12.8755 1.55203Z"></path>
@@ -1970,7 +1970,7 @@
     </div>
     <div class="doc-example__content" data-doc-examples-target="example" data-doc-example-target="content" data-title="">
       <pre><code class="doc-example__code language-curl hljs" data-syntax-highlight-target="entry">curl \
- -X DELETE http://localhost:8080/api/rooms/{id}</code></pre>
+ -X DELETE http://localhost:8080/api/room/{id}</code></pre>
     </div>
 </div>
 

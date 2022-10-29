@@ -29,6 +29,6 @@ public class RoomConfiguration {
     @JsonIgnore
     @OneToOne
     @MapsId
-    @JoinColumn(name = "room_id")
+    @JoinColumn(name = "room_id", referencedColumnName = "id", nullable = false)
     private Room room;
 }

@@ -24,6 +24,6 @@ public class IndexServiceImpl implements IndexService {
     }
 
     public Iterable<Order> getAllOrders() {
-        return orderRepository.findAll();
+        return orderRepository.getAll();
     }
 }

@@ -14,8 +14,10 @@ import javax.persistence.*;
 @Table(name = "rooms")
 public class Room {
     @Id
-    @Column(name = "id", nullable = false, unique = true, updatable = false)
-    @GeneratedValue(generator = "increment")
+    @SequenceGenerator(name = "room_id_seq_gen", sequenceName = "room_id_seq",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "room_id_seq_gen")
+    @Column(name = "id", nullable = false, unique = true)
     private Long id;
 
     @OneToOne(mappedBy = "room", cascade = CascadeType.ALL)
@@ -26,7 +28,7 @@ public class Room {
     @PrimaryKeyJoinColumn
     private RoomDescription description;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 

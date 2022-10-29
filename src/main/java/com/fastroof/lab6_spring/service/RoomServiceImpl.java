@@ -24,7 +24,8 @@ public class RoomServiceImpl implements RoomService {
     private final RoomRepository roomRepository;
 
     @Autowired
-    public RoomServiceImpl(UserRepository userRepository, RoomRepository roomRepository) {
+    public RoomServiceImpl(UserRepository userRepository,
+                           RoomRepository roomRepository) {
         this.userRepository = userRepository;
         this.roomRepository = roomRepository;
     }
@@ -36,23 +37,27 @@ public class RoomServiceImpl implements RoomService {
 
         if (user.isPresent()) {
             Room room = new Room();
-
             room.setUser(user.get());
+            roomRepository.save(room);
 
             RoomConfigurationPojo roomConfigurationPojo = roomCreationRequest.getConfiguration();
             RoomConfiguration roomConfiguration = new RoomConfiguration();
+            roomConfiguration.setId(room.getId());
             roomConfiguration.setArea(roomConfigurationPojo.getArea());
             roomConfiguration.setPrice(roomConfigurationPojo.getPrice());
             roomConfiguration.setBedroomCount(roomConfigurationPojo.getBedroomCount());
+            roomConfiguration.setRoom(room);
             room.setConfiguration(roomConfiguration);
 
             RoomDescriptionPojo roomDescriptionPojo = roomCreationRequest.getDescription();
             RoomDescription roomDescription = new RoomDescription();
+            roomDescription.setId(room.getId());
             roomDescription.setDescription(roomDescriptionPojo.getDescription());
             roomDescription.setAddress(roomDescriptionPojo.getAddress());
             roomDescription.setCreationDate(new Date());
+            roomDescription.setRoom(room);
             room.setDescription(roomDescription);
-            
+
             roomRepository.save(room);
             return true;
         }
@@ -66,9 +71,32 @@ public class RoomServiceImpl implements RoomService {
 
     @Transactional
     @Override
-    public Room updateRoom(Long id, Room updatedRoom) {
-        updatedRoom.setId(id);
-        return roomRepository.save(updatedRoom);
+    public boolean updateRoom(Long id, RoomCreationRequest updatedRoom, Principal principal) {
+        Optional<User> OptOwner = userRepository.findByEmail(principal.getName());
+
+        if (OptOwner.isPresent()) {
+            Optional<Room> OptRoom = roomRepository.findById(id);
+
+            if (OptRoom.isPresent() && OptRoom.get().getUser().equals(OptOwner.get())) {
+                Room room = OptRoom.get();
+
+                RoomConfigurationPojo roomConfigurationPojo = updatedRoom.getConfiguration();
+                RoomConfiguration roomConfiguration = room.getConfiguration();
+                roomConfiguration.setArea(roomConfigurationPojo.getArea());
+                roomConfiguration.setPrice(roomConfigurationPojo.getPrice());
+                roomConfiguration.setBedroomCount(roomConfigurationPojo.getBedroomCount());
+
+                RoomDescriptionPojo roomDescriptionPojo = updatedRoom.getDescription();
+                RoomDescription roomDescription = room.getDescription();
+                roomDescription.setDescription(roomDescriptionPojo.getDescription());
+                roomDescription.setAddress(roomDescriptionPojo.getAddress());
+                roomDescription.setCreationDate(new Date());
+
+                roomRepository.save(room);
+                return true;
+            }
+        }
+        return false;
     }
 
     @Transactional

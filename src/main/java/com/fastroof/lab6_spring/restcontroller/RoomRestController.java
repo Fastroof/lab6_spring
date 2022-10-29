@@ -37,12 +37,12 @@ public class RoomRestController {
         return searchService.findAllByAreaAndBedroomCountAndPriceWithPagination(area, bedroomCount, price, page, size);
     }
 
-    @PostMapping("/rooms")
+    @PostMapping("/room")
     boolean newRoom(@Valid RoomCreationRequest newRoom, Principal principal) {
         return roomService.addRoom(newRoom, principal);
     }
 
-    @GetMapping("/rooms/{id}")
+    @GetMapping("/room/{id}")
     Room getRoom(@PathVariable Long id) {
         Room room = roomService.getRoom(id);
         if (room == null) {
@@ -51,18 +51,18 @@ public class RoomRestController {
         return room;
     }
 
-    @PutMapping("/rooms/{id}")
-    Room updateRoom(@Valid Room updatedRoom, @PathVariable Long id, Principal principal) {
+    @PutMapping("/room/{id}")
+    boolean updateRoom(@Valid RoomCreationRequest updatedRoom, @PathVariable Long id, Principal principal) {
         Room oldRoom = roomService.getRoom(id);
         if (oldRoom == null) {
             throw new RoomNotFoundException(id);
         } else if (!principal.getName().equals(oldRoom.getUser().getEmail())) {
             throw new UserNotOwnerException(id);
         }
-        return roomService.updateRoom(id, updatedRoom);
+        return roomService.updateRoom(id, updatedRoom, principal);
     }
 
-    @DeleteMapping("/rooms/{id}")
+    @DeleteMapping("/room/{id}")
     Boolean deleteRoom(@PathVariable Long id, Principal principal) {
         Room room = roomService.getRoom(id);
         if (room == null) {

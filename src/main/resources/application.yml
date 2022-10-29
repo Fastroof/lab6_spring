@@ -1,4 +1,7 @@
 spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
   mvc:
     view:
       prefix: /WEB-INF/jsp/

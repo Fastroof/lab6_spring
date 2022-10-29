@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.Principal;
 
 @Controller
@@ -28,7 +29,7 @@ public class RoomController {
 
     @PostMapping("/room/new")
     @ResponseBody
-    public Boolean submitNewRoom(@ModelAttribute RoomCreationRequest roomCreationRequest, Principal principal) {
+    public Boolean submitNewRoom(@ModelAttribute @Valid RoomCreationRequest roomCreationRequest, Principal principal) {
         return roomService.addRoom(roomCreationRequest, principal);
     }
 
@@ -46,14 +47,14 @@ public class RoomController {
 
     @PostMapping("/room/edit")
     @ResponseBody
-    public Room submitEditedRoom(@ModelAttribute Room room, @RequestParam Long id, Principal principal) {
+    public boolean submitEditedRoom(@ModelAttribute @Valid RoomCreationRequest room, @RequestParam Long id, Principal principal) {
         Room oldRoom = roomService.getRoom(id);
         if (oldRoom == null) {
-            return null;
+            return false;
         } else if (!principal.getName().equals(oldRoom.getUser().getEmail())) {
-            return null;
+            return false;
         }
-        return roomService.updateRoom(id, room);
+        return roomService.updateRoom(id, room, principal);
     }
 
     @GetMapping("/room/delete")

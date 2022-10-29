@@ -16,8 +16,10 @@ import java.util.List;
 public class User {
     @JsonIgnore
     @Id
-    @Column(name = "id", nullable = false, unique = true, updatable = false)
-    @GeneratedValue(generator = "increment")
+    @SequenceGenerator(name = "user_id_seq_gen", sequenceName = "user_id_seq",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_seq_gen")
+    @Column(name = "id", nullable = false, unique = true)
     private Long id;
 
     @Column(name = "email", nullable = false, unique = true)
