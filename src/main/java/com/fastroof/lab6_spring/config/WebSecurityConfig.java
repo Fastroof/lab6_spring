@@ -38,7 +38,7 @@ public class WebSecurityConfig {
                 .antMatchers(HttpMethod.GET, "/api/**").permitAll().and()
                 .csrf().disable();
         http.authorizeRequests()
-                .antMatchers( "/", "/registration", "/resources/**", "/oauth2/**").permitAll()
+                .antMatchers( "/", "/registration", "/resources/**", "/oauth2/**", "/v3/*").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
